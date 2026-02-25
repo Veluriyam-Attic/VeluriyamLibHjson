@@ -1,0 +1,12 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using Terraria;
+global using Terraria.Localization;
+global using System.Reflection;
+global using Terraria.ModLoader;
+global using VeluriyamLibHjson.Tools;
+global using VeluriyamLibHjson.Core;
+global using VeluriyamLibHjson.Destroyer;
