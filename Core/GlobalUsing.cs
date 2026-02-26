@@ -10,3 +10,5 @@ global using Terraria.ModLoader;
 global using VeluriyamLibHjson.Tools;
 global using VeluriyamLibHjson.Core;
 global using VeluriyamLibHjson.Destroyer;
+global using MonoMod.Cil;
+global using Terraria.ModLoader.Config;

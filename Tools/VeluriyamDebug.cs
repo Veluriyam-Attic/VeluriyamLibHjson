@@ -1,17 +1,16 @@
-namespace VeluriyamLibHjson.Tools
+ï»¿namespace VeluriyamLibHjson.Tools
 {
     internal static class VeluriyamDebug
     {
         /// <summary>
-        /// ×Ô¼ºµÄÄÚ²¿·½·¨£¬×¢ÊÍÒª×Ô¼º×öÖ÷
+        /// è‡ªå·±çš„å†…éƒ¨æ–¹æ³•ï¼Œæ³¨é‡Šè¦è‡ªå·±åšä¸»
         /// </summary>
         /// <param name="key"></param>
         /// <param name="time"></param>
         internal static void ErrPage(string key,int time = 10)
         {
-            // 10ºÃÏñÊÇÏÔÊ¾Ê±¼äÀ´×Å
-            Utils.ShowFancyErrorMessage(VeluriyamLanguage.SafeGetText(VeluriyamLanguage.key + "Logs." + key).Value,time);
+            // 10å¥½åƒæ˜¯æ˜¾ç¤ºæ—¶é—´æ¥ç€
+            Utils.ShowFancyErrorMessage(VeluriyamLanguage.SafeGetText(VeluriyamLanguage.vkey + "Logs." + key).Value,time);
         }
-
     }
 }

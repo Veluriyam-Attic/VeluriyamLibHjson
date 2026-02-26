@@ -2,7 +2,7 @@
 {
     public static class VeluriyamLanguage
     {
-        internal const string key = "Mods.VeluriyamLibHjson.";
+        internal const string vkey = "Mods.VeluriyamLibHjson.";
 
         #region GetText(Value)
         /// <summary>
@@ -16,9 +16,9 @@
         /// <returns></returns>
         public static string SafeGetTextValue(string key)
         {
-            var outcome = Language.GetText(key).Value;
+            string outcome = Language.GetText(key).Value;
             if (outcome == key)
-                return Language.GetText(key + "Logs.CanNotGetTextValue").Value;
+                return Language.GetText(vkey + "Logs.CanNotGetTextValue").Value;
             return outcome;
         }
 
@@ -33,9 +33,9 @@
         /// <returns></returns>
         public static LocalizedText SafeGetText(string key)
         {
-            var outcome = Language.GetText(key);
+            LocalizedText outcome = Language.GetText(key);
             if (outcome.Value == key)
-                return Language.GetText(key + "Logs.CanNotGetTextValue");
+                return Language.GetText(vkey + "Logs.CanNotGetText");
             return outcome;
         }
         #endregion

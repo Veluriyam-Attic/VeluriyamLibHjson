@@ -1,1 +1,10 @@
+Configs: {
+	VeluriyamHjsonConfig: {
+		DisplayName: Veluriyam Hjson Config
 
+		ModifyManageModName: {
+			Label: Modify Manage Mod Name
+			Tooltip: ""
+		}
+	}
+}
