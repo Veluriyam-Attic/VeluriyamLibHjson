@@ -1,19 +1,19 @@
-namespace VeluriyamLibHjson.Core;
+namespace VeluriyamLibHjson.Modifier;
 /// <summary>
-/// 用于修改物品Tooltip的GlobalItem类
+/// <br/>用于修改物品Tooltip的GlobalItem类
 /// </summary>
-public class TooltipModifyGlobalItem : GlobalItem
+public class ModifyKeybind : GlobalItem
 {
     // public override bool InstancePerEntity => false;
 
     /// <summary>
-    /// 用于匹配Tooltip中需要被替换的按键绑定文本的正则表达式
+    /// <br/>用于匹配Tooltip中需要被替换的按键绑定文本的正则表达式
     /// </summary>
     public static readonly Regex MatchingKeyBindRegex = 
         new Regex(@"\[([^\]]+):BoundKey\]", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-    
+
     /// <summary>
-    /// 用于替换Tooltip中需要被替换的按键绑定文本的方法，目前只支持键盘按键
+    /// <br/>用于替换Tooltip中需要被替换的按键绑定文本的方法，目前只支持键盘按键
     /// </summary>
     /// <param name="item"></param>
     /// <param name="tooltips"></param>

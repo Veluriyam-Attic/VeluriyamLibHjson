@@ -1,4 +1,3 @@
-using MonoMod.RuntimeDetour;
 namespace VeluriyamLibHjson
 {
     public class VeluriyamLibHjson : Mod

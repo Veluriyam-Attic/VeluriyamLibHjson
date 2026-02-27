@@ -1,10 +1,23 @@
 ﻿namespace VeluriyamLibHjson.Destroyer
 {
     /// <summary>
-    /// 关于模组名称相关的修改
+    /// <br/>关于模组名称相关的修改
     /// </summary>
     public static class ModifyModName
     {
+        #region ModifyName
+        /// <summary>
+        /// 可以一键修改功能出现Mod名字的地方的方法
+        /// </summary>
+        /// <param name="InternalName">目标Mod的内部名</param>
+        /// <param name="OldName">目标模组的显示名字</param>
+        /// <param name="NewName">你要修改为的名字</param>
+        public static void ModifyName(string InternalName,string OldName,string NewName)
+        {
+            ModifyConfigName(InternalName, NewName);
+            ModifyManageModName(OldName,NewName);
+        }
+
         #region ModifyConfigName
         /// <summary>
         /// <br/>用来修改模组在模组配置页面的显示名称
@@ -16,7 +29,7 @@
         /// <br/>加载了则通过反射获取这个<see langword="Mod"/>类的<see langword="DisplayName"/>属性，并将其值修改为对应语言文本的值
         /// <br/>由于这个属性是<see langword="{get; internal set;}"/>，所以必须使用反射才能修改它的值
         /// </remarks>
-        /// <param name="ModName">你要获得的<see langword="Mod"/>类的名字</param>
+        /// <param name="ModName">目标Mod的<see langword="Mod"/>类的名字</param>
         /// <param name="NewName">你希望修改为的文本对应的本地化键</param>
         public static void ModifyConfigName(string ModName,string NewName)
         {
@@ -38,7 +51,7 @@
         /// <br/>通过反射获取这个<see langword="Mod"/>类的<see langword="DisplayName"/>属性，并将其值修改为对应语言文本的值
         /// <br/>由于这个属性是<see langword="{get; internal set;}"/>，所以必须使用反射才能修改它的值
         /// </remarks>
-        /// <param name="mod">你要修改的<see langword="Mod"/>类></param>
+        /// <param name="mod">目标Mod的<see langword="Mod"/>类></param>
         /// <param name="NewName">你希望修改为的文本</param>
         public static void ModifyConfigName<T>(T mod,string NewName) where T : Mod
         {
@@ -60,7 +73,7 @@
         /// <br/>在其他位置进行更详细的更改
         /// <br/>详见<see langword="ModifyModName.ModifyManageModNameHook"/>方法
         /// </remarks>
-        /// <param name="ModDisplayName">你要修改的Mod原本在管理Mod页面的名字</param>
+        /// <param name="ModDisplayName">目标Mod原本在管理Mod页面的名字</param>
         /// <param name="NewDisplayName">你要修改为的名字</param>
         public static void ModifyManageModName(string ModDisplayName, string NewDisplayName) => names.Add(ModDisplayName, NewDisplayName);
 
@@ -109,6 +122,8 @@
                 });
             }
         }
+        #endregion
+
         #endregion
     }
 }

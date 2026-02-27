@@ -15,3 +15,4 @@ global using Terraria.ModLoader.Config;
 global using System.ComponentModel;
 global using System.Text.RegularExpressions;
 global using Terraria.GameInput;
+global using Terraria.ID;
