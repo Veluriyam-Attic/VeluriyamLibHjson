@@ -17,7 +17,7 @@
         /// <br/>由于这个属性是<see langword="{get; internal set;}"/>，所以必须使用反射才能修改它的值
         /// </remarks>
         /// <param name="ModName">你要获得的<see langword="Mod"/>类的名字</param>
-        /// <param name="key">你希望修改为的文本对应的本地化键</param>
+        /// <param name="NewName">你希望修改为的文本对应的本地化键</param>
         public static void ModifyConfigName(string ModName,string NewName)
         {
             if (!ModLoader.HasMod(ModName))
@@ -38,9 +38,8 @@
         /// <br/>通过反射获取这个<see langword="Mod"/>类的<see langword="DisplayName"/>属性，并将其值修改为对应语言文本的值
         /// <br/>由于这个属性是<see langword="{get; internal set;}"/>，所以必须使用反射才能修改它的值
         /// </remarks>
-        /// <typeparam name="T">你要修改的<see langword="Mod"/>类</typeparam>
-        /// <param name="ModName">你要获得的<see langword="Mod"/>类的名字</param>
-        /// <param name="key">你希望修改为的文本对应的本地化键</param>
+        /// <param name="mod">你要修改的<see langword="Mod"/>类></param>
+        /// <param name="NewName">你希望修改为的文本</param>
         public static void ModifyConfigName<T>(T mod,string NewName) where T : Mod
         {
             PropertyInfo prop = mod.GetType().GetProperty("DisplayName", BindingFlags.Public | BindingFlags.Instance);
