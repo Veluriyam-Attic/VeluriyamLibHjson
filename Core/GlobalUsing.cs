@@ -12,3 +12,4 @@ global using VeluriyamLibHjson.Core;
 global using VeluriyamLibHjson.Destroyer;
 global using MonoMod.Cil;
 global using Terraria.ModLoader.Config;
+global using System.ComponentModel;

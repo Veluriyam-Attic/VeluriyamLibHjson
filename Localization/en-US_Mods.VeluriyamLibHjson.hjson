@@ -1,10 +1,23 @@
 Configs: {
 	VeluriyamHjsonConfig: {
-		DisplayName: Veluriyam Hjson Config
+		DisplayName: Hjson客户端配置
 
 		ModifyManageModName: {
-			Label: Modify Manage Mod Name
-			Tooltip: ""
+			# VeluriyamLibHjson.Destroyer.ModifyModName class
+			# region ModifyManageModName
+			Label: 修改管理模组页面中模组名称
+			Tooltip: 
+				'''
+				该功能对于添加了其他修改管理模组页面的Mod不生效
+				可能与更好的体验出现冲突,但已经尽量避免
+				'''
 		}
 	}
 }
+Logs: {
+	ErrorWarning: "[这是一个报错!请联系Mod作者!]"
+	# VeluriyamLibHjson.Core.VeluriyamLanguage class
+	CanNotGetText: "{$ErrorWarning}无法获取LocalizedText(SafeGetText方法)!"
+	CanNotGetTextValue:"{$ErrorWarning}无法获取string(SafeGetTextValue方法)!"
+}
+

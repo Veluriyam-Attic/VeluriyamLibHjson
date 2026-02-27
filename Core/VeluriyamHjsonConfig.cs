@@ -1,10 +1,8 @@
-﻿using System.ComponentModel;
-
-namespace VeluriyamLibHjson.Core
+﻿namespace VeluriyamLibHjson.Core
 {
-    public class VeluriyamHjsonConfig : ModConfig
+    public class HjsonClientConfig : ModConfig
     {
-        public static VeluriyamHjsonConfig instance => ModContent.GetInstance<VeluriyamHjsonConfig>();
+        public static HjsonClientConfig Instance => ModContent.GetInstance<HjsonClientConfig>();
 
         public override ConfigScope Mode => ConfigScope.ClientSide;
 

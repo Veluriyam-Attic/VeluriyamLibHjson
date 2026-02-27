@@ -61,8 +61,8 @@
         /// <br/>在其他位置进行更详细的更改
         /// <br/>详见<see langword="ModifyModName.ModifyManageModNameHook"/>方法
         /// </remarks>
-        /// <param name="ModDisplayName">你要修改的Mod在管理Mod页面的名字</param>
-        /// <param name="NewDisplayName"></param>
+        /// <param name="ModDisplayName">你要修改的Mod原本在管理Mod页面的名字</param>
+        /// <param name="NewDisplayName">你要修改为的名字</param>
         public static void ModifyManageModName(string ModDisplayName, string NewDisplayName) => names.Add(ModDisplayName, NewDisplayName);
 
         /// <summary>
