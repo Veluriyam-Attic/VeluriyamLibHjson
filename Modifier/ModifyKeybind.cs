@@ -1,4 +1,4 @@
-namespace VeluriyamLibHjson.Modifier;
+﻿namespace VeluriyamLibHjson.Modifier;
 /// <summary>
 /// <br/>用于修改物品Tooltip的GlobalItem类
 /// </summary>
