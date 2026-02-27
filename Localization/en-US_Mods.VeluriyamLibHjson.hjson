@@ -1,5 +1,5 @@
 Configs: {
-	VeluriyamHjsonConfig: {
+	HjsonClientConfig: {
 		DisplayName: Hjson客户端配置
 
 		ModifyManageModName: {
@@ -13,15 +13,6 @@ Configs: {
 				'''
 		}
 	}
-
-	HjsonClientConfig: {
-		DisplayName: Hjson Client Config
-
-		ModifyManageModName: {
-			Label: Modify Manage Mod Name
-			Tooltip: ""
-		}
-	}
 }
 
 Logs: {
@@ -32,8 +23,8 @@ Logs: {
 }
 
 Items: {
-	ExampleItem: {
-		DisplayName: Example Item
-		Tooltip: "{$Mods.Fargowiltas.Keybinds.Stat.DisplayName} [Fargowiltas/Stat:BoundKey] This is an example keybind display."
+	TestItem: {
+		DisplayName: Test Item
+		Tooltip: "[VeluriyamLib/DashKey:BoundKey] This is an example keybind display."
 	}
 }
