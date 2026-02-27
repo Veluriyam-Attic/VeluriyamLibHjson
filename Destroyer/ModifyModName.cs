@@ -92,13 +92,16 @@
         /// <param name="il"></param>
         private static void Manipulator(ILContext il)
         {
+            // 获取指针实例
             var cursor = new ILCursor(il);
 
+            // 找到对应指令
             while (cursor.TryGotoNext(
                 MoveType.After,
                 i => i.MatchCallvirt("Terraria.ModLoader.Core.LocalMod", "get_DisplayName")
             ))
             {
+                // 挂委托
                 cursor.EmitDelegate<Func<string, string>>(name =>
                 {
                     return names.Keys.Contains(name)
