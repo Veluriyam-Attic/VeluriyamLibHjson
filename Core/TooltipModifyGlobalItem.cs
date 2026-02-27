@@ -1,6 +1,3 @@
-using System.Text.RegularExpressions;
-using Terraria.GameInput;
-
 namespace VeluriyamLibHjson.Core;
 /// <summary>
 /// 用于修改物品Tooltip的GlobalItem类
