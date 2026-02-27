@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11513.90 insiders
+VisualStudioVersion = 18.3.11520.95 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeluriyamLibHjson", "VeluriyamLibHjson.csproj", "{9377333A-A2AD-6536-FE6E-3A8D65459B3A}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5900FFB7-9DB7-493F-8ACF-DAE89FCD0864}
+		SolutionGuid = {5A4A90C0-F3C4-42C5-9506-6F54C2BEF64A}
 	EndGlobalSection
 EndGlobal
