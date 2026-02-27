@@ -1,1 +1,2 @@
-This description will show up on the steam page, check out https://steamcommunity.com/comment/Guide/formattinghelp.
+Hjson - VeluriyamLib，一个专门提供文本相关工具的模组类库
+感谢: 虞悖,Furgo(按贡献先后排序)
