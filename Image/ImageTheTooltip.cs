@@ -1,6 +1,6 @@
 ﻿namespace VeluriyamLibHjson.Image
 {
-    internal class ImageTheTooltip : GlobalItem
+    internal class ImageTheTooltip
     {
 
     }
