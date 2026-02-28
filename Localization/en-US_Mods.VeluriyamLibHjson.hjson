@@ -25,6 +25,18 @@ Logs: {
 Items: {
 	TestItem: {
 		DisplayName: Test Item
-		Tooltip: "[VeluriyamLib/DashKey:BoundKey] This is an example keybind display."
+		Tooltip: 
+			'''
+			This is an example keybind display.
+			[VeluriyamLib/DashKey:Key:Name]
+			[VeluriyamLib/DashKey:Key]
+			[VeluriyamLib/DashKey:Name]
+			[VeluriyamLib/DashKey:Name:Key]
+			'''
 	}
+}
+
+ModifyTooltips:{
+	CanNotFoundKeybind: "[未加载提供按键的Mod]"
+	UnboundKey: "[未绑定按键]"
 }
