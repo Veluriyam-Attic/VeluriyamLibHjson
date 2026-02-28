@@ -21,44 +21,107 @@
         /// </summary>
         /// <param name="item"></param>
         /// <param name="tooltips"></param>
-        public static void ModifyTooltips(List<TooltipLine> tooltips)
+        public static List<TextSnippet> ModifyTooltips(On_ChatManager.orig_ParseMessage orig, string tooltips, Color baseColor)
         {
-            // int i = 0;
-            foreach (var tooltip in tooltips)
+            tooltips = MatchingKeyBindRegex.Replace(tooltips, match =>
             {
-                // tooltip.Text = $"{i++} {tooltip.Text}";
-                tooltip.Text = MatchingKeyBindRegex.Replace(tooltip.Text, match =>
+                // 局部变量声明
+                KeyConfiguration inputMode = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard];
+                string iname = match.Groups[1].Value;// 获取到的ExampleMod/ExampleKey
+                Match key = Regex.Match(iname, @"(.+)\/(.+)");
+                string keykey = key.Groups[1].Value switch
                 {
-                    // 局部变量声明
-                    KeyConfiguration inputMode = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard];
-                    string iname = match.Groups[1].Value;// 获取到的ExampleMod/ExampleKey
+                    "Terraria" => key.Groups[2].Value,
+                    _ => iname
+                };
 
-                    // 不存在这个按键绑定时
-                    if (!inputMode.KeyStatus.ContainsKey(iname))
-                        return VeluriyamLanguage.SafeGetTextValue(VeluriyamLanguage.vkey + "ModifyTooltips.CanNotFoundKeybind");
+                // 不存在这个按键绑定时
+                if (!inputMode.KeyStatus.ContainsKey(keykey))
+                    return VeluriyamLanguage.SafeGetTextValue(VeluriyamLanguage.vkey + "ModifyTooltips.CanNotFoundKeybind");
 
-                    List<string> keybinds = inputMode.KeyStatus[iname];// 绑定的按键名字，即具体键位
+                List<string> keybinds = inputMode.KeyStatus[keykey];// 绑定的按键名字，即具体键位
 
-                    // 未绑定按键时
-                    if (keybinds.Count == 0)
-                        return VeluriyamLanguage.SafeGetTextValue(VeluriyamLanguage.vkey + "ModifyTooltips.UnboundKey");
+                // 未绑定按键时
+                if (keybinds.Count == 0)
+                    return VeluriyamLanguage.SafeGetTextValue("LegacyMenu.195");
 
-                    // 一切正常时
-                    // 返回一个被替换掉所有Key和Name的字符串
-                    return MarchingKeyOrName.Replace(match.Groups[2].Value, m =>
+                // 一切正常时
+                // 返回一个被替换掉所有Key和Name的字符串
+                return MarchingKeyOrName.Replace(match.Groups[2].Value, m =>
+                {
+                    string name = key.Groups[1].Value switch
                     {
-                        Match key = Regex.Match(iname, @"(.+)\/(.+)");
-                        string name = VeluriyamLanguage.SafeGetTextValue($"Mods.{key.Groups[1].Value}.Keybinds.{key.Groups[2].Value}.DisplayName");
-                        string keys = string.Join(",", keybinds);
-                        return m.Groups[1].Value switch
-                        {
-                            "Key" => keys,
-                            "Name" => name,
-                            _ => ""
-                        };
-                    });
+                        "Terraria" => VeluriyamLanguage.SafeGetTextValue(VanillanKeys[key.Groups[2].Value]),
+                        _ => VeluriyamLanguage.SafeGetTextValue($"Mods.{key.Groups[1].Value}.Keybinds.{key.Groups[2].Value}.DisplayName")
+                    };
+                    string keys = string.Join(",", keybinds);
+                    return m.Groups[1].Value switch
+                    {
+                        "Key" => keys,
+                        "Name" => name,
+                        _ => ""
+                    };
                 });
-            }
+            });
+            return orig(tooltips, baseColor);
         }
+
+        private readonly static Dictionary<string, string> VanillanKeys = new() {
+            ["MouseLeft"] = "LegacyMenu.162",
+            ["MouseRight"] = "LegacyMenu.163",
+            ["MouseMiddle"] = "tModLoader.MouseMiddle",
+            ["MouseXButton1"] = "tModLoader.MouseXButton1",
+            ["MouseXButton2"] = "tModLoader.MouseXButton2",
+            ["Up"] = "LegacyMenu.148",
+            ["Down"] = "LegacyMenu.149",
+            ["Left"] = "LegacyMenu.150",
+            ["Right"] = "LegacyMenu.151",
+            ["Jump"] = "LegacyMenu.152",
+            ["Throw"] = "LegacyMenu.153",
+            ["Inventory"] = "LegacyMenu.154",
+            ["Grapple"] = "LegacyMenu.155",
+            ["SmartSelect"] = "LegacyMenu.160",
+            ["SmartCursor"] = "LegacyMenu.161",
+            ["QuickMount"] = "LegacyMenu.158",
+            ["QuickHeal"] = "LegacyMenu.159",
+            ["QuickMana"] = "LegacyMenu.156",
+            ["QuickBuff"] = "LegacyMenu.157",
+            ["MapZoomIn"] = "LegacyMenu.168",
+            ["MapZoomOut"] = "LegacyMenu.169",
+            ["MapAlphaUp"] = "LegacyMenu.170",
+            ["MapAlphaDown"] = "LegacyMenu.171",
+            ["MapFull"] = "LegacyMenu.173",
+            ["MapStyle"] = "LegacyMenu.172",
+            ["Hotbar1"] = "LegacyMenu.176",
+            ["Hotbar2"] = "LegacyMenu.177",
+            ["Hotbar3"] = "LegacyMenu.178",
+            ["Hotbar4"] = "LegacyMenu.179",
+            ["Hotbar5"] = "LegacyMenu.180",
+            ["Hotbar6"] = "LegacyMenu.181",
+            ["Hotbar7"] = "LegacyMenu.182",
+            ["Hotbar8"] = "LegacyMenu.183",
+            ["Hotbar9"] = "LegacyMenu.184",
+            ["Hotbar10"] = "LegacyMenu.185",
+            ["HotbarMinus"] = "LegacyMenu.174",
+            ["HotbarPlus"] = "LegacyMenu.175",
+            ["DpadRadial1"] = "LegacyMenu.186",
+            ["DpadRadial2"] = "LegacyMenu.187",
+            ["DpadRadial3"] = "LegacyMenu.188",
+            ["DpadRadial4"] = "LegacyMenu.189",
+            ["RadialHotbar"] = "LegacyMenu.190",
+            ["RadialQuickbar"] = "LegacyMenu.244",
+            ["DpadSnap1"] = "LegacyMenu.191",
+            ["DpadSnap2"] = "LegacyMenu.192",
+            ["DpadSnap3"] = "LegacyMenu.193",
+            ["DpadSnap4"] = "LegacyMenu.194",
+            ["LockOn"] = "LegacyMenu.231",
+            ["ViewZoomIn"] = "LegacyMenu.168",
+            ["ViewZoomOut"] = "LegacyMenu.169",
+            ["Loadout1"] = "UI.Loadout1",
+            ["Loadout2"] = "UI.Loadout2",
+            ["Loadout3"] = "UI.Loadout3",
+            ["ToggleCameraMode"] = "UI.ToggleCameraMode",
+            ["ToggleCreativeMenu"] = "UI.ToggleCreativeMenu"
+        };
     }
 }

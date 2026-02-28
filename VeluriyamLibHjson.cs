@@ -29,6 +29,13 @@ namespace VeluriyamLibHjson
                     });
                 }
             });
+
+            OnModifies.ModifyOn(true);
+        }
+
+        public override void Unload()
+        {
+            OnModifies.ModifyOn(false);
         }
     }
 }

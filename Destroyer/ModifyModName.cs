@@ -5,19 +5,6 @@
     /// </summary>
     public static class ModifyModName
     {
-        #region ModifyName
-        /// <summary>
-        /// 可以一键修改功能出现Mod名字的地方的方法
-        /// </summary>
-        /// <param name="InternalName">目标Mod的内部名</param>
-        /// <param name="OldName">目标模组的显示名字</param>
-        /// <param name="NewName">你要修改为的名字</param>
-        public static void ModifyName(string InternalName,string OldName,string NewName)
-        {
-            ModifyConfigName(InternalName, NewName);
-            ModifyManageModName(OldName,NewName);
-        }
-
         #region ModifyConfigName
         /// <summary>
         /// <br/>用来修改模组在模组配置页面的显示名称
@@ -65,7 +52,7 @@
 
         /// <summary>
         /// <br/>修改你要修改的Mod，在管理模组页面的名字
-        /// <br/>在<see langword="Mod"/>或<see langword="ModSystem"/>的<see langword="PostSetupContent"/>中调用该方法
+        /// <br/>在<see langword="Mod"/>的<see langword="Load"/>f方法中调用该方法
         /// <br/>当你启用其他修改模组页面名字的模组时，该功能不会生效
         /// </summary>
         /// <remarks>
@@ -122,8 +109,6 @@
                 });
             }
         }
-        #endregion
-
         #endregion
     }
 }

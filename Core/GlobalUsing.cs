@@ -18,3 +18,5 @@ global using Terraria.GameInput;
 global using Terraria.ID;
 global using System.IO;
 global using VeluriyamLibHjson.Modifier;
+global using Microsoft.Xna.Framework;
+global using Terraria.UI.Chat;

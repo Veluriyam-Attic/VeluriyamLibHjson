@@ -32,11 +32,11 @@ Items: {
 			[vkb/VeluriyamLib/DashKey:Key]
 			[vkb/VeluriyamLib/DashKey:Name]
 			[vkb/VeluriyamLib/DashKey:Name:Key]
+			[vkb/Terraria/Throw:NameJesusChristKey]
 			'''
 	}
 }
 
 ModifyTooltips:{
-	CanNotFoundKeybind: 未加载提供按键的Mod
-	UnboundKey: 未绑定按键
+	CanNotFoundKeybind: <未找到>
 }
