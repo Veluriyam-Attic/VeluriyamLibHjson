@@ -28,10 +28,10 @@ Items: {
 		Tooltip: 
 			'''
 			This is an example keybind display.
-			[VeluriyamLib/DashKey:Key:Name]
-			[VeluriyamLib/DashKey:Key]
-			[VeluriyamLib/DashKey:Name]
-			[VeluriyamLib/DashKey:Name:Key]
+			[vkb/VeluriyamLib/DashKey:Key:Name]
+			[vkb/VeluriyamLib/DashKey:Key]
+			[vkb/VeluriyamLib/DashKey:Name]
+			[vkb/VeluriyamLib/DashKey:Name:Key]
 			'''
 	}
 }

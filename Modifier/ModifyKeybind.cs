@@ -8,13 +8,13 @@
         /// <summary>
         /// <br/>用于匹配Tooltip中需要被替换的按键绑定文本的正则表达式
         /// </summary>
-        private static Regex MatchingKeyBindRegex =
-            new Regex(@"\[(\w+\/\w+):([^\]]+)\]", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Regex MatchingKeyBindRegex =
+            new Regex(@"\[vkb\/(\w+\/\w+):([^\]]+)\]", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// <br/>匹配具体需要替换的键位和键名位置的正则表达式
         /// </summary>
-        private static Regex MarchingKeyOrName = new Regex(@"(Name|Key)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Regex MarchingKeyOrName = new Regex(@"(Name|Key)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// <br/>用于替换Tooltip中需要被替换的按键绑定文本的方法，目前只支持键盘按键
@@ -32,11 +32,12 @@
                     // 局部变量声明
                     KeyConfiguration inputMode = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard];
                     string iname = match.Groups[1].Value;// 获取到的ExampleMod/ExampleKey
-                    List<string> keybinds = inputMode.KeyStatus[iname];// 绑定的按键名字，即具体键位
 
                     // 不存在这个按键绑定时
                     if (!inputMode.KeyStatus.ContainsKey(iname))
                         return VeluriyamLanguage.SafeGetTextValue(VeluriyamLanguage.vkey + "ModifyTooltips.CanNotFoundKeybind");
+
+                    List<string> keybinds = inputMode.KeyStatus[iname];// 绑定的按键名字，即具体键位
 
                     // 未绑定按键时
                     if (keybinds.Count == 0)
