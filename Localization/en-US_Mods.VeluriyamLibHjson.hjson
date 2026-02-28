@@ -37,6 +37,6 @@ Items: {
 }
 
 ModifyTooltips:{
-	CanNotFoundKeybind: "[未加载提供按键的Mod]"
-	UnboundKey: "[未绑定按键]"
+	CanNotFoundKeybind: 未加载提供按键的Mod
+	UnboundKey: 未绑定按键
 }
