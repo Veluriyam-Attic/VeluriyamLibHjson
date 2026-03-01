@@ -17,7 +17,7 @@
         /// <br/>由于这个属性是<see langword="{get; internal set;}"/>，所以必须使用反射才能修改它的值
         /// </remarks>
         /// <param name="ModName">目标Mod的<see langword="Mod"/>类的名字</param>
-        /// <param name="NewName">你希望修改为的文本对应的本地化键</param>
+        /// <param name="NewName">你希望修改为的文本</param>
         public static void ModifyConfigName(string ModName,string NewName)
         {
             if (!ModLoader.HasMod(ModName))
@@ -52,7 +52,7 @@
 
         /// <summary>
         /// <br/>修改你要修改的Mod，在管理模组页面的名字
-        /// <br/>在<see langword="Mod"/>的<see langword="Load"/>f方法中调用该方法
+        /// <br/>在<see langword="ModSystem.OnLocalizationsLoaded"/>f方法中调用该方法
         /// <br/>当你启用其他修改模组页面名字的模组时，该功能不会生效
         /// </summary>
         /// <remarks>
