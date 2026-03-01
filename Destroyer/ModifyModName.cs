@@ -92,7 +92,7 @@
         private static void Manipulator(ILContext il)
         {
             // 获取指针实例
-            var cursor = new ILCursor(il);
+            ILCursor cursor = new ILCursor(il);
 
             // 找到对应指令
             while (cursor.TryGotoNext(
