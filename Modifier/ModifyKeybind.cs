@@ -51,7 +51,7 @@
                 {
                     string name = key.Groups[1].Value switch
                     {
-                        "Terraria" => VeluriyamLanguage.SafeGetTextValue(VanillanKeys[key.Groups[2].Value]),
+                        "Terraria" => VeluriyamLanguage.SafeGetTextValue(_VanillaKeys[key.Groups[2].Value]),
                         _ => VeluriyamLanguage.SafeGetTextValue($"Mods.{key.Groups[1].Value}.Keybinds.{key.Groups[2].Value}.DisplayName")
                     };
                     string keys = string.Join(",", keybinds);
@@ -66,7 +66,7 @@
             return orig(tooltips, baseColor);
         }
 
-        private readonly static Dictionary<string, string> VanillanKeys = new() {
+        private readonly static Dictionary<string, string> _VanillaKeys = new() {
             ["MouseLeft"] = "LegacyMenu.162",
             ["MouseRight"] = "LegacyMenu.163",
             ["MouseMiddle"] = "tModLoader.MouseMiddle",
