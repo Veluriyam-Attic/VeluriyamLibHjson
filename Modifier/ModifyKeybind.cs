@@ -6,7 +6,7 @@
     internal class ModifyKeybind
     {
         /// <summary>
-        /// <br/>用于匹配Tooltip中需要被替换的按键绑定文本的正则表达式
+        /// <br/>用于匹配文本中需要被替换的按键绑定文本的正则表达式
         /// </summary>
         private static readonly Regex MatchingKeyBindRegex =
             new Regex(@"\[vkb\/(\w+\/\w+):([^\]]+)\]", RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -17,7 +17,7 @@
         private static readonly Regex MarchingKeyOrName = new Regex(@"(Name|Key)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         /// <summary>
-        /// <br/>用于替换Tooltip中需要被替换的按键绑定文本的方法，目前只支持键盘按键
+        /// <br/>用于替换文本中需要被替换的按键绑定文本的方法，目前只支持键盘按键
         /// </summary>
         /// <param name="item"></param>
         /// <param name="tooltips"></param>
@@ -28,22 +28,22 @@
                 // 局部变量声明
                 KeyConfiguration inputMode = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard];
                 string iname = match.Groups[1].Value;// 获取到的ExampleMod/ExampleKey
-                Match key = Regex.Match(iname, @"(.+)\/(.+)");
+                Match key = Regex.Match(iname, @"(.+)\/(.+)");// 获取/前后的文本
                 string keykey = key.Groups[1].Value switch
                 {
-                    "Terraria" => key.Groups[2].Value,
-                    _ => iname
+                    "Terraria" => key.Groups[2].Value,// 如果是原版按键，就返回/后面的文本作为获取具体绑定的按键字典的索引键
+                    _ => iname// 不是的话就返回整个作为字典的索引键
                 };
 
                 // 不存在这个按键绑定时
                 if (!inputMode.KeyStatus.ContainsKey(keykey))
-                    return VeluriyamLanguage.SafeGetTextValue(VeluriyamLanguage.vkey + "ModifyTooltips.CanNotFoundKeybind");
+                    return VLanguage.SafeGetTextValue(VLanguage.vkey + "ModifyTooltips.CanNotFoundKeybind");
 
                 List<string> keybinds = inputMode.KeyStatus[keykey];// 绑定的按键名字，即具体键位
 
                 // 未绑定按键时
                 if (keybinds.Count == 0)
-                    return VeluriyamLanguage.SafeGetTextValue("LegacyMenu.195");
+                    return VLanguage.SafeGetTextValue("LegacyMenu.195");
 
                 // 一切正常时
                 // 返回一个被替换掉所有Key和Name的字符串
@@ -51,8 +51,8 @@
                 {
                     string name = key.Groups[1].Value switch
                     {
-                        "Terraria" => VeluriyamLanguage.SafeGetTextValue(_VanillaKeys[key.Groups[2].Value]),
-                        _ => VeluriyamLanguage.SafeGetTextValue($"Mods.{key.Groups[1].Value}.Keybinds.{key.Groups[2].Value}.DisplayName")
+                        "Terraria" => VLanguage.SafeGetTextValue(_VanillaKeys[key.Groups[2].Value]),
+                        _ => VLanguage.SafeGetTextValue($"Mods.{key.Groups[1].Value}.Keybinds.{key.Groups[2].Value}.DisplayName")
                     };
                     string keys = string.Join(",", keybinds);
                     return m.Groups[1].Value switch
@@ -66,7 +66,9 @@
             return orig(tooltips, baseColor);
         }
 
-        private readonly static Dictionary<string, string> _VanillaKeys = new() {
+        #region 原版键位(未添加145的键位)
+        private readonly static Dictionary<string, string> _VanillaKeys = new()
+        {
             ["MouseLeft"] = "LegacyMenu.162",
             ["MouseRight"] = "LegacyMenu.163",
             ["MouseMiddle"] = "tModLoader.MouseMiddle",
@@ -123,5 +125,6 @@
             ["ToggleCameraMode"] = "UI.ToggleCameraMode",
             ["ToggleCreativeMenu"] = "UI.ToggleCreativeMenu"
         };
+        #endregion
     }
 }

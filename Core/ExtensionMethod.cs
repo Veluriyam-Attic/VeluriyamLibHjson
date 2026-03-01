@@ -4,7 +4,7 @@
     /// <br/>对于<see langword="Language"/>类的一些方法的拓展
     /// <br/>由于<see langword="Language"/>类是静态类，所以没有办法写拓展方法
     /// </summary>
-    public static class VeluriyamLanguage
+    public static class VLanguage
     {
         internal const string vkey = "Mods.VeluriyamLibHjson.";
 

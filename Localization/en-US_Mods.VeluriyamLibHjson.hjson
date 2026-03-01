@@ -17,7 +17,7 @@ Configs: {
 
 Logs: {
 	ErrorWarning: "[这是一个报错!请联系Mod作者!]"
-	# VeluriyamLibHjson.Core.VeluriyamLanguage class
+	# VeluriyamLibHjson.Core.VLanguage class
 	CanNotGetText: "{$ErrorWarning}无法获取LocalizedText(SafeGetText方法)!"
 	CanNotGetTextValue: "{$ErrorWarning}无法获取string(SafeGetTextValue方法)!"
 }
@@ -38,5 +38,6 @@ Items: {
 }
 
 ModifyTooltips:{
+	# 对应绑定按键的替换，当提供对应按键的Mod未加载时会返回这段文本
 	CanNotFoundKeybind: <未找到>
 }
