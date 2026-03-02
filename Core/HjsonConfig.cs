@@ -7,6 +7,7 @@
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool ModifyManageModName { get; set; }
     }
 }
