@@ -62,7 +62,11 @@
         /// </remarks>
         /// <param name="ModDisplayName">目标Mod原本在管理Mod页面的名字</param>
         /// <param name="NewDisplayName">你要修改为的名字</param>
-        public static void ModifyManageModName(string ModDisplayName, string NewDisplayName) => names.TryAdd(ModDisplayName, NewDisplayName);
+        public static void ModifyManageModName(string ModDisplayName, string NewDisplayName)
+        {
+            if (!names.TryAdd(ModDisplayName, NewDisplayName))
+                names[ModDisplayName] = NewDisplayName;
+        }
 
         /// <summary>
         /// <br/>修改你要修改的Mod，在管理模组页面的名字
