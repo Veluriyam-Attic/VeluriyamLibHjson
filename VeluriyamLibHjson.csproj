@@ -5,7 +5,9 @@
 
 	<!-- General -->
 	<PropertyGroup>
-		
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>CS1591</NoWarn>
 	</PropertyGroup>
 
 	<!-- References -->

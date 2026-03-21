@@ -81,9 +81,6 @@
         /// </remarks>
         internal static void ModifyManageModNameHook()
         {
-            if (Main.dedServ)
-                return;
-            
             MonoModHooks.Modify(typeof(Main).Assembly.GetTypes().First(_ => _.Name == "UIModItem").GetMethod("OnInitialize"), Manipulator);
         }
 
