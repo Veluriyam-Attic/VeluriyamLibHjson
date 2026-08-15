@@ -20,3 +20,8 @@ global using System.IO;
 global using VeluriyamLibHjson.Modifier;
 global using Microsoft.Xna.Framework;
 global using Terraria.UI.Chat;
+global using Microsoft.Xna.Framework.Graphics;
+global using Terraria.GameContent;
+global using Microsoft.Xna.Framework.Input;
+global using System.Collections.ObjectModel;
+global using static System.Net.Mime.MediaTypeNames;
