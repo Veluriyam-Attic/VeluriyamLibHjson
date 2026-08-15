@@ -24,7 +24,7 @@ internal class ImageTheTooltip : GlobalItem
             string description = default;
             float length = default;
 
-            // 匹配并替换
+            # region 匹配并替换的局部方法
             void Match(Regex regex, string color)
             {
                 // 修改Buff文本和add实例喵
@@ -76,6 +76,7 @@ internal class ImageTheTooltip : GlobalItem
                     }, 1);
                 }
             }
+            #endregion
 
             // 调用一下
             Match(MatchingBuff, "90EE90");
