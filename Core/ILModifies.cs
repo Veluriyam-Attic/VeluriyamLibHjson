@@ -1,11 +1,11 @@
-namespace VeluriyamLibHjson.Core
+﻿namespace VeluriyamLibHjson.Core
 {
     internal class ILModifies
     {
         internal static void ModifyIL()
         {
             #region 添加关于修改管理模组页面中模组名字的IL钩子
-            if (HjsonClientConfig.Instance.ModifyManageModName)
+            if (HjsonConfig.Instance.ModifyManageModName)
                 ModifyModName.ModifyManageModNameHook();
             #endregion
 
