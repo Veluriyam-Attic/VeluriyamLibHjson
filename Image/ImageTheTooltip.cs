@@ -3,8 +3,7 @@
 internal class ImageTheTooltip : GlobalItem
 {
     // 匹配的正则表达式
-    private static Regex MatchingBuff = new Regex(@"\[vbuff\/([^\]]+)\]");
-    private static Regex MatchingDebuff = new Regex(@"\[vdebuff\/([^\]]+)\]");
+    private static Regex MatchingBuff = new Regex(@"\[(vdebuff|vbuff)\/([^\]]+)\]");
     // 匹配中间具体Buff的来源和名称的正则表达式
     private static Regex MatchingSpecificBuff = new Regex(@"([^\/]+)\/([^\/]+)");
 
@@ -24,64 +23,62 @@ internal class ImageTheTooltip : GlobalItem
                 string name = default;
                 string description = default;
                 float length = default;
+                string color = default;
 
-                #region 匹配并替换的局部方法
-                void Match(Regex regex, string color)
+                // 修改Buff文本和add实例喵
+                while (MatchingBuff.Match(tooltips[i].Text).Success)
                 {
-                    // 修改Buff文本和add实例喵
-                    while (regex.Match(tooltips[i].Text).Success)
+                    // 先替换最外层，只替换一个
+                    tooltips[i].Text = MatchingBuff.Replace(tooltips[i].Text, match =>
                     {
-                        // 先替换最外层，只替换一个
-                        tooltips[i].Text = regex.Replace(tooltips[i].Text, match =>
+                        // 替换里面一层
+                        return MatchingSpecificBuff.Replace(match.Groups[2].Value, key =>
                         {
-                            // 替换里面一层
-                            return MatchingSpecificBuff.Replace(match.Groups[1].Value, key =>
+                            color = match.Groups[1].Value switch
                             {
-                                // 获取在这之前的文本长度，方便定位buff贴图要绘制在哪里
-                                length = ChatManager.GetStringSize(FontAssets.MouseText.Value, tooltips[i].Text.Substring(0, match.Index), Vector2.One).X;
-                                // 如过是原版的Buff
-                                if (key.Groups[1].Value == "Terraria")
+                                "vdebuff" => "EE9090",
+                                "vbuff" => "90EE90",
+                                _ => "FFFFFF"
+                            };
+                            // 获取在这之前的文本长度，方便定位buff贴图要绘制在哪里
+                            length = ChatManager.GetStringSize(FontAssets.MouseText.Value, tooltips[i].Text.Substring(0, match.Index), Vector2.One).X;
+                            // 如过是原版的Buff
+                            if (key.Groups[1].Value == "Terraria")
+                            {
+                                // 并且能获取到type
+                                if (BuffID.Search.TryGetId(key.Groups[2].Value, out int buffType))
                                 {
-                                    // 并且能获取到type
-                                    if (BuffID.Search.TryGetId(key.Groups[2].Value, out int buffType))
+                                    // 直接就是添加进绘制列表好吧不带犹豫的
+                                    texture = TextureAssets.Buff[buffType].Value;
+                                    name = Lang.GetBuffName(buffType);
+                                    description = Lang.GetBuffDescription(buffType);
+
+                                    buffs.Add((length, i, color, texture, name, description));
+                                }
+                            }
+                            else
+                            {
+                                // 要不然就是Mod的Buff
+                                if (ModLoader.TryGetMod(key.Groups[1].Value, out Mod source))
+                                {
+                                    // 直接获取对应的ModBuff实例好吧
+                                    if (source.TryFind<ModBuff>(key.Groups[2].Value, out ModBuff modbuff))
                                     {
-                                        // 直接就是添加进绘制列表好吧不带犹豫的
-                                        texture = TextureAssets.Buff[buffType].Value;
-                                        name = Lang.GetBuffName(buffType);
-                                        description = Lang.GetBuffDescription(buffType);
+                                        // 也是直接就是添加进绘制列表好吧不带犹豫的
+                                        texture = ModContent.Request<Texture2D>(modbuff.Texture).Value;
+                                        name = modbuff.DisplayName.Value;
+                                        description = modbuff.Description.Value;
 
                                         buffs.Add((length, i, color, texture, name, description));
                                     }
                                 }
-                                else
-                                {
-                                    // 要不然就是Mod的Buff
-                                    if (ModLoader.TryGetMod(key.Groups[1].Value, out Mod source))
-                                    {
-                                        // 直接获取对应的ModBuff实例好吧
-                                        if (source.TryFind<ModBuff>(key.Groups[2].Value, out ModBuff modbuff))
-                                        {
-                                            // 也是直接就是添加进绘制列表好吧不带犹豫的
-                                            texture = ModContent.Request<Texture2D>(modbuff.Texture).Value;
-                                            name = modbuff.DisplayName.Value;
-                                            description = modbuff.Description.Value;
+                            }
 
-                                            buffs.Add((length, i, color, texture, name, description));
-                                        }
-                                    }
-                                }
-
-                                // 空格是给Buff贴图留的空间
-                                return $"      [c/{color}:{name}]";
-                            });
-                        }, 1);
-                    }
+                            // 空格是给Buff贴图留的空间
+                            return $"      [c/{color}:{name}]";
+                        });
+                    }, 1);
                 }
-                #endregion
-
-                // 调用一下
-                Match(MatchingBuff, "90EE90");
-                Match(MatchingDebuff, "EE9090");
             }
 
             // 显示Buff的description的方法好吧
