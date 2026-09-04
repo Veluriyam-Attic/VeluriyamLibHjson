@@ -1,6 +1,6 @@
-Configs: {
-	HjsonClientConfig: {
-		DisplayName: Hjson客户端配置
+﻿Configs: {
+	HjsonConfig: {
+		DisplayName: Hjson配置
 
 		ModifyManageModName: {
 			# VeluriyamLibHjson.Destroyer.ModifyModName class
