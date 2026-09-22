@@ -1,4 +1,4 @@
-displayName = Hjson - VeluriyamLib
+﻿displayName = Hjson - VeluriyamLib
 author = 虞悖
 version = 0.1.0.1
 side = both

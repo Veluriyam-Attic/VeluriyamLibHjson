@@ -7,6 +7,7 @@
             if (apply)
             {
                 On_ChatManager.ParseMessage += ModifyKeybind.ModifyTooltips;
+                ImageTheTooltip.On_ItemLoader_ModifyTooltips();
             }
             else
             {

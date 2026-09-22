@@ -9,7 +9,7 @@ internal class ImageTheTooltip : GlobalItem
 
     public override bool InstancePerEntity => true;
 
-    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+    public List<TooltipLine> ModifyTooltips(List<TooltipLine> tooltips)
     {
         if (HjsonConfig.Instance.ImageTooltipBuff)
         {
@@ -108,11 +108,12 @@ internal class ImageTheTooltip : GlobalItem
                         // 添加Buff的名字和描述
                         tooltips.Add(new TooltipLine(this.Mod, "Hjson-ShowDetailBuffName", $"      [c/{buffs[j].Item3}:{buffs[j].Item5}]"));
                         tooltips.Add(new TooltipLine(this.Mod, "Hjson-ShowDetailBuffDescription", buffs[j].Item6));
-
                     }
                 }
             }
         }
+
+        return tooltips;
     }
 
     // 要绘制的Buff列表
@@ -141,5 +142,40 @@ internal class ImageTheTooltip : GlobalItem
             // 清空一下之前筛重用的List
             added.Clear();
         }
+    }
+
+    public delegate List<TooltipLine> ItemLoader_ModifyTooltips_Handler(Item item, ref int numTooltips, string[] names, ref string[] text, ref bool[] modifier, ref bool[] badModifier, ref int oneDropLogo, out Color?[] overrideColor, int prefixlineIndex);
+
+    public static List<TooltipLine> ModifyTooltipAtEnd(ItemLoader_ModifyTooltips_Handler orig, Item item, ref int numTooltips, string[] names, ref string[] text, ref bool[] modifier, ref bool[] badModifier, ref int oneDropLogo, out Color?[] overrideColor, int prefixlineIndex)
+    {
+        List<TooltipLine> lines = orig.Invoke(item, ref numTooltips, names, ref text, ref modifier, ref badModifier, ref oneDropLogo, out overrideColor, prefixlineIndex);
+        List<TooltipLine> @new = lines;
+        if (!item.IsAir && item.TryGetGlobalItem<ImageTheTooltip>(out ImageTheTooltip itt))
+        {
+            @new = itt.ModifyTooltips(lines);
+            numTooltips = @new.Count;
+            text = new string[numTooltips];
+            modifier = new bool[numTooltips];
+            badModifier = new bool[numTooltips];
+            oneDropLogo = -1;
+            overrideColor = new Color?[numTooltips];
+
+            for (int i = 0; i < numTooltips; i++)
+            {
+                text[i] = @new[i].Text;
+                modifier[i] = @new[i].IsModifier;
+                badModifier[i] = @new[i].IsModifierBad;
+                overrideColor[i] = @new[i].OverrideColor;
+            }
+        }
+
+        return @new;
+    }
+
+    public static void On_ItemLoader_ModifyTooltips()
+    {
+        MethodBase ItemLoader_ModifyTooltips = typeof(ItemLoader).GetMethod("ModifyTooltips");
+
+        MonoModHooks.Add(ItemLoader_ModifyTooltips, ModifyTooltipAtEnd);
     }
 }

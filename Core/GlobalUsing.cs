@@ -24,4 +24,5 @@ global using Microsoft.Xna.Framework.Graphics;
 global using Terraria.GameContent;
 global using Microsoft.Xna.Framework.Input;
 global using System.Collections.ObjectModel;
+global using VeluriyamLibHjson.Image;
 global using static System.Net.Mime.MediaTypeNames;
