@@ -42,10 +42,6 @@
 
                 List<string> keybinds = inputMode.KeyStatus[keykey];// 绑定的按键名字，即具体键位
 
-                // 未绑定按键时
-                if (keybinds.Count == 0)
-                    return VLanguage.SafeGetTextValue("LegacyMenu.195");
-
                 // 一切正常时
                 // 返回一个被替换掉所有Key和Name的字符串
                 return MarchingKeyOrName.Replace(match.Groups[2].Value, m =>
@@ -55,7 +51,13 @@
                         "Terraria" => VLanguage.SafeGetTextValue(_VanillaKeys[key.Groups[2].Value]),
                         _ => VLanguage.SafeGetTextValue($"Mods.{key.Groups[1].Value}.Keybinds.{key.Groups[2].Value}.DisplayName")
                     };
+
                     string keys = string.Join(",", keybinds);
+
+                    // 未绑定按键时
+                    if (keybinds.Count == 0)
+                        keys = VLanguage.SafeGetTextValue("LegacyMenu.195");
+
                     return m.Groups[1].Value switch
                     {
                         "Key" => keys,
