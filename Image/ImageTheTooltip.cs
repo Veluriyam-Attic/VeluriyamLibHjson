@@ -82,7 +82,7 @@ internal class ImageTheTooltip : GlobalItem
             }
 
             // 显示Buff的description的方法好吧
-            if (Main.keyState.IsKeyDown(Keys.LeftControl) && buffs.Count != 0)
+            if (ShowBuffDetail.Key.Current && buffs.Count != 0)
             {
                 // 确保物品描述大于等于2
                 if (tooltips.Count >= 2)
