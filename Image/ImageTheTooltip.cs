@@ -111,9 +111,10 @@ internal class ImageTheTooltip : GlobalItem
                     }
                 }
             }
-            else if (buffs.Count != 0)
+            else if (HjsonConfig.Instance.ShowBuffDetailHint && buffs.Count != 0)
             {
-                TooltipLine hit = new TooltipLine(this.Mod, "Hjson-CanShowBuffDetail", VLanguage.SafeGetTextValue("Mods.VeluriyamLibHjson.ImageTooltip.CanShowBuffDetail")) { OverrideColor = Color.LightSkyBlue };
+                // 提示玩家可以按下按键显示Buff详情的文本
+                TooltipLine hint = new TooltipLine(this.Mod, "Hjson-CanShowBuffDetail", VLanguage.SafeGetTextValue("Mods.VeluriyamLibHjson.ImageTooltip.CanShowBuffDetail")) { OverrideColor = Color.LightSkyBlue };
 
                 string GetModName(Item item)
                 {
@@ -122,7 +123,7 @@ internal class ImageTheTooltip : GlobalItem
                     else
                         return "Terraria";
                 }
-                    tooltips.Insert(tooltips.Count - (tooltips[tooltips.Count - 1].Text.Contains(GetModName(item)) ? 1 : 0), hit);
+                    tooltips.Insert(tooltips.Count - (tooltips[tooltips.Count - 1].Text.Contains(GetModName(item)) ? 1 : 0), hint);
             }
         }
 

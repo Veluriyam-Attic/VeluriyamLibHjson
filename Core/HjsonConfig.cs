@@ -13,5 +13,8 @@
 
         [DefaultValue(true)]
         public bool ImageTooltipBuff;
+
+        [DefaultValue(true)]
+        public bool ShowBuffDetailHint;
     }
 }
