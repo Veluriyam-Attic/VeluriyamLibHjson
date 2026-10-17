@@ -9,7 +9,7 @@ internal class ImageTheTooltip : GlobalItem
 
     public override bool InstancePerEntity => true;
 
-    public List<TooltipLine> ModifyTooltips(List<TooltipLine> tooltips)
+    public List<TooltipLine> ModifyTooltips(List<TooltipLine> tooltips,Item item)
     {
         if (HjsonConfig.Instance.ImageTooltipBuff)
         {
@@ -111,6 +111,19 @@ internal class ImageTheTooltip : GlobalItem
                     }
                 }
             }
+            else if (buffs.Count != 0)
+            {
+                TooltipLine hit = new TooltipLine(this.Mod, "Hjson-CanShowBuffDetail", VLanguage.SafeGetTextValue("Mods.VeluriyamLibHjson.ImageTooltip.CanShowBuffDetail")) { OverrideColor = Color.LightSkyBlue };
+
+                string GetModName(Item item)
+                {
+                    if (item.ModItem != null)
+                        return item.ModItem.Mod.DisplayName;
+                    else
+                        return "Terraria";
+                }
+                    tooltips.Insert(tooltips.Count - (tooltips[tooltips.Count - 1].Text.Contains(GetModName(item)) ? 1 : 0), hit);
+            }
         }
 
         return tooltips;
@@ -152,7 +165,7 @@ internal class ImageTheTooltip : GlobalItem
         List<TooltipLine> @new = lines;
         if (!item.IsAir && item.TryGetGlobalItem<ImageTheTooltip>(out ImageTheTooltip itt))
         {
-            @new = itt.ModifyTooltips(lines);
+            @new = itt.ModifyTooltips(lines,item);
             numTooltips = @new.Count;
             text = new string[numTooltips];
             modifier = new bool[numTooltips];

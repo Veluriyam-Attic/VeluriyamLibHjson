@@ -1,5 +1,6 @@
 ﻿namespace VeluriyamLibHjson.Modifier
 {
+#pragma warning disable CS1572,CS1573
     /// <summary>
     /// <br/>用于修改物品Tooltip的GlobalItem类
     /// </summary>

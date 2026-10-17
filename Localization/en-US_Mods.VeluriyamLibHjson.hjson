@@ -41,3 +41,7 @@ ModifyTooltips:{
 	# 对应绑定按键的替换，当提供对应按键的Mod未加载时会返回这段文本
 	CanNotFoundKeybind: <未找到>
 }
+
+ImageTooltip:{
+	CanShowBuffDetail:⌈Hjson⌋:按住[Ctrl]以显示Buff详细信息
+}
