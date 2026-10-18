@@ -111,9 +111,9 @@ internal class ImageTheTooltip : GlobalItem
                     }
                 }
             }
+            // 提示玩家可以按下按键显示Buff详情的文本
             else if (HjsonConfig.Instance.ShowBuffDetailHint && buffs.Count != 0)
             {
-                // 提示玩家可以按下按键显示Buff详情的文本
                 TooltipLine hint = new TooltipLine(this.Mod, "Hjson-CanShowBuffDetail", VLanguage.SafeGetTextValue("Mods.VeluriyamLibHjson.ImageTooltip.CanShowBuffDetail")) { OverrideColor = Color.LightSkyBlue };
 
                 string GetModName(Item item)
