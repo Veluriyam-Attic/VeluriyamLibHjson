@@ -1,10 +1,8 @@
 ﻿namespace VeluriyamLibHjson.Hotkeys;
 
-public class ShowBuffDetail : ModSystem
+public class ShowBuffDetail : ModType
 {
     public static ModKeybind Key;
-
-    public override void Load() => Key = KeybindLoader.RegisterKeybind(this.Mod, "ShowBuffDetail",Keys.LeftControl);
-
+    protected override void Register() => Key = KeybindLoader.RegisterKeybind(Mod, "ShowBuffDetail", Keys.LeftControl);
     public override void Unload() => Key = null;
 }
