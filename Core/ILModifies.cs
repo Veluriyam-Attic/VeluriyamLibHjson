@@ -25,7 +25,7 @@
                     // 加上自己的新委托
                     cursor.EmitDelegate<Action<string, string>>((path, text) =>
                     {
-                        if (!path.Contains("VeluriyamLibHjson"))
+                        if (!path.Contains("VeluriyamLibHjson") || path.Contains("ModSources\\VeluriyamLibHjson"))
                             File.WriteAllText(path, text);
                     });
                 }
