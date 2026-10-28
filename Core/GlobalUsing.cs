@@ -27,3 +27,5 @@ global using System.Collections.ObjectModel;
 global using VeluriyamLibHjson.Image;
 global using static System.Net.Mime.MediaTypeNames;
 global using VeluriyamLibHjson.Hotkeys;
+global using VeluriyamLibHjson.Destroyer.FuckHardcoded;
+global using VLH = VeluriyamLibHjson.VeluriyamLibHjson;

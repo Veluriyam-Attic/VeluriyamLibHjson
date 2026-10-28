@@ -16,5 +16,9 @@
 
         [DefaultValue(true)]
         public bool ShowBuffDetailHint;
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool EnableDebug;
     }
 }
