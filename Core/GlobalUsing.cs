@@ -29,3 +29,4 @@ global using static System.Net.Mime.MediaTypeNames;
 global using VeluriyamLibHjson.Hotkeys;
 global using VeluriyamLibHjson.Destroyer.FuckHardcoded;
 global using VLH = VeluriyamLibHjson.VeluriyamLibHjson;
+global using Terraria.ModLoader.Core;

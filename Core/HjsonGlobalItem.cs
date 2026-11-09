@@ -1,6 +1,6 @@
 ﻿namespace VeluriyamLibHjson.Core
 {
-    internal class HjsonGlobalItem : GlobalItem
+    internal abstract class HjsonGlobalItem : GlobalItem
     {
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {

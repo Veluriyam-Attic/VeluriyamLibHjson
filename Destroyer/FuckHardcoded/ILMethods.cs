@@ -3,6 +3,7 @@
 #pragma warning disable CS1573
 public static class ILMethods
 {
+    #region IL_Matchldstr
     /// <summary>
     /// 这个方法让你可以快捷的填入对应的<see langword="MethodBase"/>(或<see langword="MethodInfo"/>)和原文本以及新文本去修改对应的文本
     /// 请注意,EnableException仅为调试时应该开启的选项
@@ -43,11 +44,15 @@ public static class ILMethods
                     VLH.Log($"The localized text is {newStr}!");
                     return;
                 }
-                throw new CanNotFindTargetTextException("HjsonLib-CanNotFindTargetTextException\n" +
+                throw new CanNotFindTargetTextException(
+                    $"HjsonLib-CanNotFindTargetTextException\n" +
                     $"Can not localize {origStr}!\n" +
                     $"In Method {method.Name}!\n" +
                     $"The localized text is {newStr}!");
             }
         });
     }
+    #endregion
+
+
 }

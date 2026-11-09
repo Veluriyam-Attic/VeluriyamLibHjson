@@ -9,6 +9,14 @@ internal class ImageTheTooltip : GlobalItem
 
     public override bool InstancePerEntity => true;
 
+    /// <summary>
+    /// <br/>用来修改物品描述的方法
+    /// <br/>未按下显示Buff详情的快捷键时，物品描述中只显示Buff的名称
+    /// <br/>按下后显示Buff的名称和描述
+    /// </summary>
+    /// <param name="tooltips"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
     public List<TooltipLine> ModifyTooltips(List<TooltipLine> tooltips,Item item)
     {
         if (HjsonConfig.Instance.ImageTooltipBuff)
@@ -135,6 +143,11 @@ internal class ImageTheTooltip : GlobalItem
     // 给按Ctrl时候显示的信息筛重用的
     public List<string> added = new();
 
+    /// <summary>
+    /// 在这里绘制Buff的图标
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="lines"></param>
     public override void PostDrawTooltip(Item item, ReadOnlyCollection<DrawableTooltipLine> lines)
     {
         if (HjsonConfig.Instance.ImageTooltipBuff)
@@ -158,6 +171,7 @@ internal class ImageTheTooltip : GlobalItem
         }
     }
 
+    #region 给物品描述挂钩子
     public delegate List<TooltipLine> ItemLoader_ModifyTooltips_Handler(Item item, ref int numTooltips, string[] names, ref string[] text, ref bool[] modifier, ref bool[] badModifier, ref int oneDropLogo, out Color?[] overrideColor, int prefixlineIndex);
 
     public static List<TooltipLine> ModifyTooltipAtEnd(ItemLoader_ModifyTooltips_Handler orig, Item item, ref int numTooltips, string[] names, ref string[] text, ref bool[] modifier, ref bool[] badModifier, ref int oneDropLogo, out Color?[] overrideColor, int prefixlineIndex)
@@ -192,4 +206,5 @@ internal class ImageTheTooltip : GlobalItem
 
         MonoModHooks.Add(ItemLoader_ModifyTooltips, ModifyTooltipAtEnd);
     }
+    #endregion
 }

@@ -1,5 +1,8 @@
 ﻿namespace VeluriyamLibHjson.Hotkeys;
 
+/// <summary>
+/// 显示Buff详情的对应绑定按键
+/// </summary>
 public class ShowBuffDetail : ModType
 {
     public static ModKeybind Key;
